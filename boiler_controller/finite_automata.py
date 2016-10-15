@@ -1,0 +1,3 @@
+
+class FiniteAutomata:
+    pass
