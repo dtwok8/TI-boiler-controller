@@ -12,6 +12,7 @@ class States:
         START
         """
 
+        #ukazka
         if(InputSignals.HL1 == input_signal):
             return States.filling_low_water, [OutputSignals.ZN]
 
@@ -27,7 +28,7 @@ class States:
             return States.start, None
 
     @classmethod
-    def filling_low_water():
+    def filling_low_water(self, input_signal):
         """
         napouští, málo vody
         """
@@ -35,7 +36,7 @@ class States:
         return None
 
     @classmethod
-    def filling_heating():
+    def filling_heating(self, input_signal):
         """
         topí, napouští
         """
@@ -44,7 +45,7 @@ class States:
 
 
     @classmethod
-    def heating():
+    def heating(self, input_signal):
         """
         topí
         """
@@ -52,7 +53,7 @@ class States:
         return None
 
     @classmethod
-    def w():
+    def nevim_jak_pojemnovat1(self, input_signal):
         """
         plná nádrž, netopí se, nenapouští se
         """
@@ -60,7 +61,7 @@ class States:
         return None
 
     @classmethod
-    def q():
+    def nevim_jak_pojemnovat2(self, input_signal):
         """
         teplota a hladina OK
         """
@@ -69,7 +70,7 @@ class States:
         
 
     @classmethod
-    def a():
+    def nevim_jak_pojemnovat3(self, input_signal):
         """
         napouštění dost vody na topení, ale netopí se
         """
@@ -78,7 +79,7 @@ class States:
         
 
     @classmethod
-    def inactivity():
+    def inactivity(self, input_signal):
         """
         nečinnost
         """
