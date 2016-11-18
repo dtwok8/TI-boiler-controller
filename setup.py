@@ -1,9 +1,9 @@
 from setuptools import setup, find_packages
 
 setup(name = "boiler-controller",
-      version ="0.1dev",
+      version ="0.7dev",
       description='',
-      author = "Kateøina Kratochví­lová,Jan Kohlíèek",
+      author = "KateÅ™ina KratochvÃ­lovÃ¡,Jan KohlÃ­Äek",
       author_email = "dtwok8@students.zcu.cz,kohl@students.zcu.cz",
       url = 'https://github.com/dtwok8/TI-boiler-controller',
       license = 'BSD',

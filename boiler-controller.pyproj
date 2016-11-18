@@ -23,13 +23,13 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="boiler_controller\conf\settings.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="boiler_controller\conf\__init__.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="boiler_controller\finite_automata.py" />
+    <Compile Include="boiler_controller\signals.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="boiler_controller\states.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="boiler_controller\__init__.py">
       <SubType>Code</SubType>
     </Compile>
@@ -43,7 +43,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="boiler_controller\" />
-    <Folder Include="boiler_controller\conf\" />
     <Folder Include="tests\" />
   </ItemGroup>
   <PropertyGroup>
