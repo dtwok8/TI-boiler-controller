@@ -11,7 +11,6 @@ class States:
         """
         START
         """
-
         #ukazka
         if(InputSignals.HL1 == input_signal):
             return States.filling_low_water, [OutputSignals.ZN]
@@ -27,6 +26,7 @@ class States:
         else:
             return States.start, None
 
+
     @classmethod
     def filling_low_water(self, input_signal):
         """
@@ -34,6 +34,7 @@ class States:
         """
         #musi se dodelat
         return None
+
 
     @classmethod
     def filling_heating(self, input_signal):
@@ -52,6 +53,7 @@ class States:
         #musi se dodelat
         return None
 
+
     @classmethod
     def nevim_jak_pojemnovat1(self, input_signal):
         """
@@ -59,6 +61,7 @@ class States:
         """
         #musi se dodelat
         return None
+
 
     @classmethod
     def nevim_jak_pojemnovat2(self, input_signal):
