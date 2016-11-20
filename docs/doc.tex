@@ -1,6 +1,5 @@
 \documentclass[12pt]{report}
 \usepackage[utf8]{inputenc}
-\usepackage[IL2]{fontenc}
 \usepackage[czech]{babel}
 \usepackage{hyperref}
 \usepackage{graphicx} 
@@ -16,7 +15,8 @@
 \end{flushleft}
 \begin{center}
 
-{\Huge KIV/TI - Semestrální práce\\[0.3cm]}\\
+{\Huge KIV/TI - Semestrální práce}
+\\[0.3cm]
 \vspace{1.7cm}
 {\Large Kateřina Kratochvílová - A13B0364P}\\
 \vspace{0.2cm}
@@ -46,12 +46,37 @@ Definujte potřebné vstupní a výstupní signály, automat popište přechodov
 Model řídícího automatu realizujte softwarově na základě principů popsaných v materiálu. Všechny signály od čidel modelujte vstupy od klávesnice, řídicí signál a informaci o stavu vypisujte textově na obrazovku.\\
 
 
-\chapter{Návrh}
+\chapter{Analýza úlohy}
+Kotle bude přijímat impulsové signály od čidel hladinoměru a teploměru. Vždy bude pomoc přijmout jen jeden signál, na který může reagovat vysláním neomezeným počtem signálů.
+Za těchto podmínek lze použít konečný automat Mealyho typu.\\
+Stavy, kterými může kotel během celého cyklu projít: start, nečinnost, napouštění, topení, napouštění-topení,
+
+Vstupní signály: 
+
+Výstupní signály: 
+
 \chapter{Implementace}
-\chapter{Manuál}
+Simulace kotlu je konzolová aplikace, napsaná ve skriptovacím jazyce Python. Python byl zvolen pro jeho produktivnost z hlediska rychlosti psaní kódu.
+
+
+
+\chapter{Uživatelská příručka}
+\section{Spuštění aplikace}
+
+
+Pro spuštění je potřeba mít nainstalovaný Python, který zle stáhnout z \url{https://www.python.org/downloads/}\\
+Aplikaci spustíte příkazem \texttt{"python boiler\_controller"}.\\
+\\
+Volitelné parametry:
+\begin{itemize}
+	\item \texttt{-h} ... vypíše nápovědu
+	\item \texttt{-v} ... vypíše verzi
+\end{itemize}
 
 
 \chapter{Závěr}
+V semestrální práci jsme vytvořily návrh automatu a jeho následnou implementaci.
+Překvapilo nás, jak bylo obtížné a časově náročné navrhnout konečný automat, který by měl mít praktické použití. Tato zkušenost nám pomohla pochopit výhody a nevýhody konečných automatů.
 
 
 \end{document}
