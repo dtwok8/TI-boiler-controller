@@ -17,24 +17,26 @@ class FiniteAutomata:
         while(True):
             state = self.state_base(state)
             if(state is None):
-                print("Ukončení pro neplatný vstupní signál")
                 break
 
 
     def state_base(self,state):
         print("Stav: {0}".format(state.__doc__))
 
+        if(state.__code__.co_argcount<=1):
+            return None
+
         input_signal = input("Zadejte vstupní signál: ")
        
         if(input_signal in InputSignals.__members__):
-            input_signal = InputSignals(input_signal)
+            input_signal = InputSignals(input_signal)      
         else:
-            return None
+            input_signal = None
 
         state, output_signals = state(input_signal)
 
         if(output_signals is not None):
             str_output_signals = ', '.join(str(x) for x in output_signals)
-            print("Výstupní signal: {0}".format(str_output_signals))
+            print("Výstupní signály: {0}".format(str_output_signals))
 
         return state

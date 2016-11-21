@@ -8,6 +8,8 @@ class InputSignals(Enum):
     HL4 = 'HL4'
     TP1 = 'TP1'
     TP2 = 'TP2'
+    ZK = 'ZK'
+    VK = 'VK'
 
 class OutputSignals(Enum):
     # Výstupní
@@ -15,6 +17,6 @@ class OutputSignals(Enum):
     VN = 'VN'
     ZT = 'ZT'
     VT = 'VT'
-    ZK = 'ZK'
+    
 
 

@@ -12,7 +12,9 @@ class States:
         START
         """
         #ukazka
-        if(InputSignals.HL1 == input_signal):
+        if(input_signal==None):
+            return States.error, [OutputSignals.VN, OutputSignals.VT]
+        elif(InputSignals.HL1 == input_signal):
             return States.filling_low_water, [OutputSignals.ZN]
 
         elif(InputSignals.HL2 == input_signal):
@@ -87,4 +89,12 @@ class States:
         nečinnost
         """
         #musi se dodelat
-        return None  
+        return None
+    
+    @classmethod
+    def error(self):
+        """
+        chybový stav
+        """
+        
+        return None, []   
