@@ -13,18 +13,19 @@ class States:
         """
         #ukazka
         if(input_signal == None): #spatny vstup -> chybovy stav
-            return States.error, [OutputSignals.VN, OutputSignals.VT]
+            return States.error, []
+
+        elif(InputSignals.VK == input_signal):
+            return States.inactivity, []
 
         elif(InputSignals.HL1 == input_signal):
             return States.filling_low_water, [OutputSignals.ZN]
 
         elif(InputSignals.HL2 == input_signal):
-            #musi se dodelat
-            return States.filling_low_water, [OutputSignals.ZN]
+            return States.water_on_heating, [OutputSignals.ZN]
 
         elif(InputSignals.HL3 == input_signal):
-            #musi se dodelat
-            return States.filling_low_water, [OutputSignals.ZN]
+            return States.full_water_not_heating, []
 
         else: #ostatni signaly -> nazpatek do stavu
             return States.start, None
@@ -36,7 +37,13 @@ class States:
         napouští, málo vody
         """
         if(input_signal == None):
-            return States.error, [OutputSignals.VN, OutputSignals.VT]
+            return States.error, [OutputSignals.VN]
+
+        elif(InputSignals.VK == input_signal):
+            return States.inactivity, [OutputSignals.VN]
+
+        elif(InputSignals.HL2 == input_signal):
+            return States.water_on_heating, []
 
         else:
             return States.filling_low_water, None
@@ -49,6 +56,18 @@ class States:
         """
         if(input_signal == None):
             return States.error, [OutputSignals.VN, OutputSignals.VT]
+
+        elif(InputSignals.VK == input_signal):
+            return States.inactivity, [OutputSignals.VN, OutputSignals.VT]
+
+        elif(InputSignals.TP2 == input_signal):
+            return States.water_on_heating, [OutputSignals.VT]
+
+        elif(InputSignals.HL1 == input_signal):
+            return States.filling_low_water, [OutputSignals.VT]
+
+        elif(InputSignals.HL3 == input_signal):
+            return States.heating, [OutputSignals.VN]
         
         else:
             return States.filling_heating, None
@@ -60,46 +79,84 @@ class States:
         topí
         """
         if(input_signal == None):
-            return States.error, [OutputSignals.VN, OutputSignals.VT]
+            return States.error, [OutputSignals.VT]
+
+        elif(InputSignals.VK == input_signal):
+            return States.inactivity, [OutputSignals.VT]
+
+        elif(InputSignals.TP2 == input_signal):
+            return States.temperature_water_ok, [OutputSignals.VT]
+
+        elif(InputSignals.HL4 == input_signal):
+            return States.filling_heating, [OutputSignals.ZN]
 
         else:
             return States.heating, None
 
 
     @classmethod
-    def nevim_jak_pojemnovat1(self, input_signal):
+    def full_water_not_heating(self, input_signal):
         """
         plná nádrž, netopí se, nenapouští se
         """
         if(input_signal == None):
-            return States.error, [OutputSignals.VN, OutputSignals.VT]
+            return States.error, []
         
+        elif(InputSignals.VK == input_signal):
+            return States.inactivity, []
+
+        elif(InputSignals.TP1 == input_signal):
+            return States.heating, [OutputSignals.ZT]
+
+        elif(InputSignals.TP2 == input_signal):
+            return States.temperature_water_ok, []
+
+        ######################### CHYBI REAKCE NA HL1, HL2, HL3
+
         else:
-            return States.nevim_jak_pojemnovat1, None
+            return States.full_water_not_heating, None
 
 
     @classmethod
-    def nevim_jak_pojemnovat2(self, input_signal):
+    def temperature_water_ok(self, input_signal):
         """
         teplota a hladina OK
         """
         if(input_signal == None):
-            return States.error, [OutputSignals.VN, OutputSignals.VT]
+            return States.error, []
         
+        elif(InputSignals.VK == input_signal):
+            return States.inactivity, []
+
+        elif(InputSignals.TP1 == input_signal):
+            return States.heating, [OutputSignals.ZT]
+
+        elif(InputSignals.HL4 == input_signal):
+            return States.water_on_heating, [OutputSignals.ZN]
+
         else:
-            return States.nevim_jak_pojemnovat2, None
+            return States.temperature_water_ok, None
 
 
     @classmethod
-    def nevim_jak_pojemnovat3(self, input_signal):
+    def water_on_heating(self, input_signal):
         """
         napouštění dost vody na topení, ale netopí se
         """
         if(input_signal == None):
-            return States.error, [OutputSignals.VN, OutputSignals.VT]
+            return States.error, [OutputSignals.VN]
         
+        elif(InputSignals.VK == input_signal):
+            return States.inactivity, [OutputSignals.VN]
+
+        elif(InputSignals.HL3 == input_signal):
+            return States.temperature_water_ok, [OutputSignals.VN]
+
+        elif(InputSignals.TP1 == input_signal):
+            return States.filling_heating, [OutputSignals.ZT]
+
         else:
-            return States.nevim_jak_pojemnovat3, None
+            return States.water_on_heating, None
 
 
     @classmethod
@@ -108,8 +165,11 @@ class States:
         nečinnost
         """
         if(input_signal == None):
-            return States.error, [OutputSignals.VN, OutputSignals.VT]
+            return States.error, []
         
+        elif(InputSignals.ZK == input_signal):
+            return States.start, []
+
         else:
             return States.inactivity, None
 

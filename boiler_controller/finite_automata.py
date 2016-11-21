@@ -12,7 +12,7 @@ class FiniteAutomata:
 
 
     def loop(self):
-        state = States.start
+        state = States.inactivity
 
         while(True):
             state = self.state_base(state)
