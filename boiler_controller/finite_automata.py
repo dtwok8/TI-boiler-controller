@@ -23,7 +23,7 @@ class FiniteAutomata:
     def state_base(self,state):
         print("Stav: {0}".format(state.__doc__))
 
-        if(state.__code__.co_argcount<=1):
+        if(state.__code__.co_argcount <= 1):
             return None
 
         input_signal = input("Zadejte vstupní signál: ")

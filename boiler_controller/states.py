@@ -12,8 +12,9 @@ class States:
         START
         """
         #ukazka
-        if(input_signal==None):
+        if(input_signal == None): #spatny vstup -> chybovy stav
             return States.error, [OutputSignals.VN, OutputSignals.VT]
+
         elif(InputSignals.HL1 == input_signal):
             return States.filling_low_water, [OutputSignals.ZN]
 
@@ -25,7 +26,7 @@ class States:
             #musi se dodelat
             return States.filling_low_water, [OutputSignals.ZN]
 
-        else:
+        else: #ostatni signaly -> nazpatek do stavu
             return States.start, None
 
 
@@ -34,8 +35,11 @@ class States:
         """
         napouští, málo vody
         """
-        #musi se dodelat
-        return None
+        if(input_signal == None):
+            return States.error, [OutputSignals.VN, OutputSignals.VT]
+
+        else:
+            return States.filling_low_water, None
 
 
     @classmethod
@@ -43,8 +47,11 @@ class States:
         """
         topí, napouští
         """
-        #musi se dodelat
-        return None
+        if(input_signal == None):
+            return States.error, [OutputSignals.VN, OutputSignals.VT]
+        
+        else:
+            return States.filling_heating, None
 
 
     @classmethod
@@ -52,8 +59,11 @@ class States:
         """
         topí
         """
-        #musi se dodelat
-        return None
+        if(input_signal == None):
+            return States.error, [OutputSignals.VN, OutputSignals.VT]
+
+        else:
+            return States.heating, None
 
 
     @classmethod
@@ -61,8 +71,11 @@ class States:
         """
         plná nádrž, netopí se, nenapouští se
         """
-        #musi se dodelat
-        return None
+        if(input_signal == None):
+            return States.error, [OutputSignals.VN, OutputSignals.VT]
+        
+        else:
+            return States.nevim_jak_pojemnovat1, None
 
 
     @classmethod
@@ -70,31 +83,40 @@ class States:
         """
         teplota a hladina OK
         """
-        #musi se dodelat
-        return None
+        if(input_signal == None):
+            return States.error, [OutputSignals.VN, OutputSignals.VT]
         
+        else:
+            return States.nevim_jak_pojemnovat2, None
+
 
     @classmethod
     def nevim_jak_pojemnovat3(self, input_signal):
         """
         napouštění dost vody na topení, ale netopí se
         """
-        #musi se dodelat
-        return None
+        if(input_signal == None):
+            return States.error, [OutputSignals.VN, OutputSignals.VT]
         
+        else:
+            return States.nevim_jak_pojemnovat3, None
+
 
     @classmethod
     def inactivity(self, input_signal):
         """
         nečinnost
         """
-        #musi se dodelat
-        return None
-    
+        if(input_signal == None):
+            return States.error, [OutputSignals.VN, OutputSignals.VT]
+        
+        else:
+            return States.inactivity, None
+
+
     @classmethod
     def error(self):
         """
         chybový stav
-        """
-        
+        """     
         return None, []   
