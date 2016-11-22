@@ -26,7 +26,8 @@ class FiniteAutomata:
         if(state.__code__.co_argcount <= 1):
             return None
 
-        input_signal = input("Zadejte vstupní signál: ")
+        print("Zadejte vstupní signál: ", end="")
+        input_signal = input()
        
         if(input_signal in InputSignals.__members__):
             input_signal = InputSignals(input_signal)      
