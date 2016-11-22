@@ -4,6 +4,8 @@
 \usepackage{hyperref}
 \usepackage{graphicx} 
 \usepackage{float}
+\usepackage{svg}
+\usepackage{amsmath}
 \title{Logické řízení - řízení kotle na ohřev vody}
 \author{Jan Kohlíček}
 
@@ -39,7 +41,7 @@
 \setcounter{page}{1}
 Navrhněte konečněautomatový model pro řízení kotle na ohřev vody podle zadání:\\
 \\
-Po stisknutí tlačítka START obsluhou systému začne napouštět kotel a po dosažení určité minimální úrovně hladiny zapne topné spirály. Po dosažení maximální hladiny kotle přestane napouštět a dokončí ohřev. Po dosažení stanovené teploty dojde k vypnutí topných spirál. Předpokládáme kontinuální odběr teplé vody, kotel musí být schopen vodu dopouštět.\\
+Po stisknutí tlačítka START obsluhou systém začne napouštět kotel a po dosažení určité minimální úrovně hladiny zapne topné spirály. Po dosažení maximální hladiny kotle přestane napouštět a dokončí ohřev. Po dosažení stanovené teploty dojde k vypnutí topných spirál. Předpokládáme kontinuální odběr teplé vody, kotel musí být schopen vodu dopouštět.\\
 \\
 Definujte potřebné vstupní a výstupní signály, automat popište přechodovým grafem.\\
 \\
@@ -51,12 +53,19 @@ Kotle bude přijímat impulsové signály od čidel hladinoměru a teploměru. V
 Za těchto podmínek lze použít konečný automat Mealyho typu.\\
 Stavy, kterými může kotel během celého cyklu projít: start, nečinnost, napouštění, topení, napouštění-topení,
 
+\begin{figure}[htbp]
+  \centering
+  \includesvg{./images/graf.svg}
+  \caption{svg image}
+\end{figure}
+
+
 Vstupní signály: 
 
 Výstupní signály: 
 
 \chapter{Implementace}
-Simulace kotlu je konzolová aplikace, napsaná ve skriptovacím jazyce Python. Python byl zvolen pro jeho produktivnost z hlediska rychlosti psaní kódu.
+Simulace kotle je řešená jako konzolová aplikace, napsaná ve skriptovacím jazyce Python. Tento jazyk byl zvolen pro jeho produktivnost z hlediska rychlosti psaní kódu.
 
 
 
