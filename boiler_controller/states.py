@@ -162,7 +162,7 @@ class States:
     @classmethod
     def inactivity(self, input_signal):
         """
-        nečinnost
+        NEČINNOST
         """
         if(input_signal == None):
             return States.error, []
@@ -177,6 +177,6 @@ class States:
     @classmethod
     def error(self):
         """
-        chybový stav
+        CHYBA
         """     
         return None, []   
