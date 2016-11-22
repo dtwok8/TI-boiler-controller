@@ -111,7 +111,8 @@ class States:
         elif(InputSignals.TP2 == input_signal):
             return States.temperature_water_ok, []
 
-        ######################### CHYBI REAKCE NA HL1, HL2, HL3
+        elif(InputSignals.HL2 == input_signal):
+            return States.water_on_heating, [OutputSignals.ZN]
 
         else:
             return States.full_water_not_heating, None
