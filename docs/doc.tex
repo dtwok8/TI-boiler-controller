@@ -4,7 +4,6 @@
 \usepackage{hyperref}
 \usepackage{graphicx} 
 \usepackage{float}
-\usepackage{svg}
 \usepackage{amsmath}
 \title{Logické řízení - řízení kotle na ohřev vody}
 \author{Jan Kohlíček}
@@ -49,20 +48,33 @@ Model řídícího automatu realizujte softwarově na základě principů popsan
 
 
 \chapter{Analýza úlohy}
-Kotle bude přijímat impulsové signály od čidel hladinoměru a teploměru. Vždy bude pomoc přijmout jen jeden signál, na který může reagovat vysláním neomezeným počtem signálů.
+Kotel bude přijímat impulsové signály od čidel hladinoměru a teploměru. Vždy bude moci přijmout jen jeden signál, na který může reagovat vysláním neomezeným počtem signálů.
 Za těchto podmínek lze použít konečný automat Mealyho typu.\\
-Stavy, kterými může kotel během celého cyklu projít: start, nečinnost, napouštění, topení, napouštění-topení,
+Stavy, kterými může kotel během celého cyklu projít: start, nečinnost, napouštění, topení, napouštění-topení,\\
+
+Vstupní signály: 
+\begin{itemize}
+\item HL1 - málo vody na topení
+\item HL2 - dost vody na topení
+\item HL3 - plná nádrž
+\item HL4 - Hladina klesla pod úroveň, kdy se začne napouštět
+\item TP1 - teplota klesla pod minimální úroveň
+\item TP2 - teplota je na maximu
+\end{itemize}
+
+Výstupní signály: 
+\begin{itemize}
+\item ZN - zapni napouštění
+\item VN - vypni napouštění
+\item ZT - zapni topení
+\item VT - vypni topení
+\end{itemize}
 
 \begin{figure}[htbp]
   \centering
-  \includesvg{./images/graf.svg}
-  \caption{svg image}
+  \includegraphics[width=6in]{./images/graf.png}
+  \caption{návrh automatu}
 \end{figure}
-
-
-Vstupní signály: 
-
-Výstupní signály: 
 
 \chapter{Implementace}
 Simulace kotle je řešená jako konzolová aplikace, napsaná ve skriptovacím jazyce Python. Tento jazyk byl zvolen pro jeho produktivnost z hlediska rychlosti psaní kódu.
@@ -71,7 +83,7 @@ Simulace kotle je řešená jako konzolová aplikace, napsaná ve skriptovacím 
 
 \chapter{Uživatelská příručka}
 \section{Spuštění aplikace}
-Pro spuštění je potřeba mít nainstalovaný Python, který zle stáhnout z \url{https://www.python.org/downloads/}\\
+Pro spuštění je potřeba mít nainstalovaný Python, který lze stáhnout z \url{https://www.python.org/downloads/}\\
 Aplikaci spustíte ve složce projektu příkazem \texttt{"python boiler\_controller"}.\\
 \\
 Volitelné parametry:
