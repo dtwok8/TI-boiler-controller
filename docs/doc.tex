@@ -4,7 +4,9 @@
 \usepackage{hyperref}
 \usepackage{graphicx} 
 \usepackage{float}
-\usepackage{amsmath}
+\usepackage{blindtext}
+\usepackage{enumitem}
+\usepackage{scrextend}
 \title{Logické řízení - řízení kotle na ohřev vody}
 \author{Jan Kohlíček}
 
@@ -48,8 +50,8 @@ Model řídícího automatu realizujte softwarově na základě principů popsan
 
 
 \chapter{Analýza úlohy}
-Kotel bude přijímat impulsové signály od čidel hladinoměru a teploměru. Vždy bude moci přijmout jen jeden signál, na který může reagovat vysláním neomezeným počtem signálů.
-Za těchto podmínek lze použít konečný automat Mealyho typu.\\
+Kotel bude přijímat impulsové signály od čidel hladinoměru a teploměru. Vždy bude moci přijmout jen \textbf{jeden signál}, na který může reagovat vysláním \textbf{neomezeným počtem signálů}.
+Za těchto podmínek lze použít konečný automat \textbf{Mealyho typu}.\\
 Stavy, kterými může kotel během celého cyklu projít: nečinnost, start, napouštění - málo vody, topení, napouštění - topení, napuštění - dost vody na topení ale netopí se, teplota OK hladina OK, Plná nádrž -netopí se nenapouští se\\
 
 Vstupní signály: 
@@ -70,21 +72,37 @@ Výstupní signály:
 \item VT - vypni topení
 \end{itemize}
 
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=6in]{./images/graf.png}
-  \caption{návrh automatu}
+
+
+\begin{figure}[h]
+		\centering
+		\includegraphics[width=\textwidth]{./images/graf.png}	
+		\caption{Návrh konečného automatu}
 \end{figure}
 
 \chapter{Implementace}
-Simulace kotle je řešená jako konzolová aplikace, napsaná ve skriptovacím jazyce Python. Tento jazyk byl zvolen pro jeho produktivnost z hlediska rychlosti psaní kódu.
+Simulace kotle je řešená jako \textbf{konzolová aplikace}, napsaná ve skriptovacím jazyce \textbf{Python}. Tento jazyk byl zvolen pro jeho produktivnost z hlediska rychlosti psaní kódu.\\
 
+\section{Adresářová struktura}
+	Aplikace má následující adresářovou strukturu:\\
+	\begin{description}
+	\item [boiler\_controller:] složka modulu
 
+	\begin{description}
+		\item [\_\_main\_\_.py:] Spouští automat.
+		\item [finite\_automata.py:] Třída obsahuje nekonečný cyklus ve kterém se spouští jednotlivé stavy, dále obsahuje šablonu pro stavy, která zajišťuje vstup od uživatele a výpis informací.
+		\item [signals.py:] Soubor obsahuje dvě enum množiny vstupních a výstupních signálů.
+		\item [states.py:] Třída se statickými metodami, co metoda to jeden stav. Metody mají jeden parametr vstupní signál a vrací dvě hodnoty následující stav a pole výstupních signálů.
+		
+	\end{description}	
+	\item [docs:] Dokumentace semestrální práce.			
+	\item [setup.py:] Vytvoření balíčků (PyPI).
+	\end{description}
 
 \chapter{Uživatelská příručka}
 \section{Spuštění aplikace}
 Pro spuštění je potřeba mít nainstalovaný Python, který lze stáhnout z \url{https://www.python.org/downloads/}\\
-Aplikaci spustíte ve složce projektu příkazem \texttt{"python boiler\_controller"}.\\
+Aplikaci spustíte ve složce projektu příkazem \texttt{"python boiler\_controller"} na linuxu \texttt{"python3 boiler\_controller"}.\\
 \\
 Volitelné parametry:
 \begin{itemize}
@@ -92,6 +110,25 @@ Volitelné parametry:
 	\item \texttt{-v} ... vypíše verzi
 \end{itemize}
 
+\section{Ukázka}
+
+\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.8\textwidth]{./images/app_start.png}	
+		\caption{Start aplikace}
+\end{figure}
+
+\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.8\textwidth]{./images/app_progress.png}	
+		\caption{Průběh aplikace}
+\end{figure}
+
+\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.8\textwidth]{./images/app_error.png}	
+		\caption{Stav CHYBA při neplatném vstupním signálu}
+\end{figure}
 
 \chapter{Závěr}
 V semestrální práci jsme vytvořili návrh automatu a jeho následnou implementaci.
