@@ -5,7 +5,6 @@ class InputSignals(Enum):
     HL1 = 'HL1'
     HL2 = 'HL2'
     HL3 = 'HL3'
-    HL4 = 'HL4'
     TP1 = 'TP1'
     TP2 = 'TP2'
     ZK = 'ZK'
