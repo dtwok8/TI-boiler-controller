@@ -51,6 +51,9 @@ Model řídícího automatu realizujte softwarově na základě principů popsan
 
 \chapter{Analýza úlohy}
 Kotel bude přijímat impulsové signály od čidel hladinoměru a teploměru. Vždy bude moci přijmout jen \textbf{jeden signál}, na který může reagovat vysláním \textbf{neomezeným počtem signálů}.
+Čidla budou posílat signály v \textbf{časovém intervalu}, aby jsme měli jistotu, že se signál zareagovalo.\\
+Nádrž je rozdělena na tři části o kterých informuje hladinové čidlo, posílá signály HL1 (málo vody na topení), HL2 (dost vody na topení) a HL3 (plná nádrž).
+Teplotní čidlo posílá signály TP1 (teplota klesla pod minimální úroveň) a TP2 (teplota je na maximu).\\
 Za těchto podmínek lze použít konečný automat \textbf{Mealyho typu}.\\
 Stavy, kterými může kotel během celého cyklu projít: nečinnost, start, napouštění - málo vody, topení, napouštění - topení, napuštění - dost vody na topení ale netopí se, teplota OK hladina OK, Plná nádrž -netopí se nenapouští se\\
 
