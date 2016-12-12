@@ -87,7 +87,7 @@ class States:
         elif(InputSignals.TP2 == input_signal):
             return States.temperature_water_ok, [OutputSignals.VT]
 
-        elif(InputSignals.HL3 == input_signal):
+        elif(InputSignals.HL2 == input_signal):
             return States.filling_heating, [OutputSignals.ZN]
 
         elif(InputSignals.HL1 == input_signal):
@@ -161,6 +161,9 @@ class States:
 
         elif(InputSignals.HL3 == input_signal):
             return States.temperature_water_ok, [OutputSignals.VN]
+
+        elif(InputSignals.HL1 == input_signal):
+            return States.filling_low_water, []
 
         elif(InputSignals.TP1 == input_signal):
             return States.filling_heating, [OutputSignals.ZT]

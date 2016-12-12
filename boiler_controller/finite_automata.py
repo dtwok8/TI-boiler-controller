@@ -27,7 +27,7 @@ class FiniteAutomata:
             return None
 
         print("Zadejte vstupní signál: ", end="")
-        input_signal = input()
+        input_signal = input().strip().upper()
        
         if(input_signal in InputSignals.__members__):
             input_signal = InputSignals(input_signal)      

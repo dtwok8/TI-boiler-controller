@@ -12,7 +12,7 @@ def execute():
 
 def args_parse():
     parser = argparse.ArgumentParser(prog='boiler_controller',description='Simulace boileru, pomocí konečného automatu')
-    parser.add_argument('-v', '--version', action='version', version='%(prog)s (version 0.7dev)')
+    parser.add_argument('-v', '--version', action='version', version='%(prog)s (version 1.1.1)')
   
     return parser.parse_args()
     
